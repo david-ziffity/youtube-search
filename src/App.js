@@ -19,11 +19,15 @@ class App extends Component {
           '/search',
           {params: {q: term}
           });
-          
+
         this.setState({
             list: response.data.items,
             selectedItem: response.data.items[0]
         });
+    }
+
+    onSelectItem = (item) => {
+        this.setState({selectedItem: item});
     }
 
     componentDidMount() {
@@ -34,11 +38,11 @@ class App extends Component {
         if (!this.state.list.length) {
             return (
               <div className="container">
-                  <div className="alert alert-danger text-center m-5">OOps.. Facing issue to get the Data for you !</div>
+                  <div className="alert alert-danger text-center m-5">Loading !</div>
               </div>
               )
         }
-        
+
         return (
           <div className="youtube-app container mt-4">
               <SearchForm label="Enter search Term:" onChange={this.onSearchFormChange} />
@@ -47,7 +51,7 @@ class App extends Component {
                       <ItemDetail item={this.state.selectedItem} />
                   </div>
                   <div className="col-lg-5">
-                      <Lister list={this.state.list} />
+                      <Lister list={this.state.list} onSelectItem={this.onSelectItem} />
                   </div>
               </div>
           </div>
@@ -55,7 +59,6 @@ class App extends Component {
     }
 
     render = () => this.renderContent();
-
 }
 
 export default App;

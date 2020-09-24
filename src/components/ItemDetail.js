@@ -9,9 +9,9 @@ const ItemDetail = ({item}) => {
     const videourl = `http://www.youtube.com/embed/${item.id.videoId}`;
 
     return (
-      <div className="item-detail card">
+      <div className="item-detail card mb-4">
           <div className="embed-responsive embed-responsive-16by9">
-              <iframe title="Video player" className="embed-responsive-item" src={videourl} frameborder="0"></iframe>
+              <iframe title="Video player" className="embed-responsive-item" src={videourl} frameBorder="0"></iframe>
           </div>
           <div className="card-body">
               <h5>{item.snippet.title}</h5>
